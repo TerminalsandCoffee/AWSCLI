@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Install Java and Tomcat
+sudo yum update -y
+sudo yum install -y java-1.8.0-openjdk-devel
+sudo yum install -y tomcat tomcat-webapps tomcat-admin-webapps
+
+# Configure Tomcat
+sudo sed -i 's/8080/80/g' /usr/share/tomcat/conf/server.xml
+sudo sed -i 's/8009/8080/g' /usr/share/tomcat/conf/server.xml
+sudo sed -i 's/8443/443/g' /usr/share/tomcat/conf/server.xml
+
+# Start Tomcat
+sudo systemctl enable tomcat
+sudo systemctl start tomcat
